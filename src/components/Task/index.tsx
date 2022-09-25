@@ -1,5 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import { styles } from "./styles";
+import { ItemContainer, ItemLeft, IconLeft, ItemText, IconRight} from "./styles";
 
 type TaskProps = {
   text: string
@@ -7,12 +6,12 @@ type TaskProps = {
 
 export default function Task({text}: TaskProps) {
   return(
-    <View style={styles.itemContainer}>
-      <View style={styles.itemLeft}>
-        <TouchableOpacity style={styles.iconLeft}></TouchableOpacity>
-        <Text style={styles.itemText}>{text}</Text>
-      </View>
-      <View style={styles.iconRight}></View>
-    </View>
+    <ItemContainer>
+      <ItemLeft>
+        <IconLeft />
+        <ItemText>{text}</ItemText>
+      </ItemLeft>
+      <IconRight />
+    </ItemContainer>
   )
 }

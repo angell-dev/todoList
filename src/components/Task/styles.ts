@@ -1,37 +1,38 @@
-import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
 
-export const styles = StyleSheet.create({
-  itemContainer:{
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 20,
-  },
-  itemLeft:{
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap'
+export const ItemContainer = styled.View`
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
 
-  },
-  iconLeft:{
-    width: 24,
-    height: 24,
-    backgroundColor: '#55BCF6',
-    opacity: 0.4,
-    borderRadius: 5,
-  },
-  itemText:{
-    paddingLeft: 12,
-    maxWidth: '80%',
-  },
-  iconRight:{
-    width: 12,
-    height: 12,
-    borderColor: '#55BCF6',
-    borderWidth: 2,
-    borderRadius: 5,
-  },
-});
+export const ItemLeft = styled.View`
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap 
+`;
+
+export const IconLeft = styled.TouchableOpacity`
+  width: 24px;
+  height: 24px;
+  background: #55BCF6;
+  opacity: 0.4;
+  border-radius: 5px;
+`;
+
+export const ItemText = styled.Text`
+  padding-left: 12px;
+  max-width: 80%;
+`;
+
+export const IconRight = styled.View`
+  width: 12px;
+  height: 12px;
+  border-color: #55BCF6;
+  border-width: 2px;
+  border-radius: 5px;
+`;

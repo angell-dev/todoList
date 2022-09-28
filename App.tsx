@@ -1,34 +1,51 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Keyboard, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { KeyboardView, TextInputContainer, AddWrapper, Container, Wrapper, Title } from './styles';
 import Task from './src/components/Task';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <View style={styles.wrapper}>
-        <Text style={styles.title}>Today`s tasks</Text>
+  const [task, setTask] = useState<string>("");
+  const [taskItems, setTaskItems] = useState<string[]>([]);
 
-        <View style={styles.items}>
-          <Task text='Task 1'/>
-          <Task text='Task 2'/>
+
+  const handleAddTask = () => {
+    Keyboard.dismiss();
+    setTaskItems([...taskItems, task])
+    setTask('');
+    console.log(task)
+  }
+
+  const comleteTask = (index:number) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index,1);
+    setTaskItems(itemsCopy);
+  }
+
+  return (
+    <Container>
+      <Wrapper>
+        <Title>Today`s tasks</Title>
+
+        <View>
+            {taskItems.map((item, index)=> {
+                return (
+                  <TouchableOpacity key={index} onPress={() => comleteTask(index)}>
+                    <Task text={item} /> 
+                  </TouchableOpacity>
+                )
+              })
+            }
         </View>
-      </View>
-    </View>
+      </Wrapper>
+
+      <KeyboardView behavior={Platform.OS ==="ios" ? "padding" : "height"}>
+      <TextInputContainer placeholder="Write a task" value={task} onChangeText={(text: string) => setTask(text)} />
+      <TouchableOpacity onPress={()=> handleAddTask()}>
+        <AddWrapper>
+          <Text>+</Text>
+        </AddWrapper>
+      </TouchableOpacity>
+    </KeyboardView>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#E8EAED',
-  },
-  wrapper:{
-   paddingTop: 80,
-   paddingHorizontal: 20,
-  },
-  title:{
-    fontSize: 24,
-    fontWeight: '700',
-    marginVertical: 22,
-  },
-  items:{},
-});
